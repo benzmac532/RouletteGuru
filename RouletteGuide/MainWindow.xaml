@@ -1,0 +1,172 @@
+﻿<Window x:Class="RouletteGuide.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RouletteGuide"
+        mc:Ignorable="d"
+        Title="Roulette Guru" Height="500" Width="950">
+    <Window.Resources>
+        <Style x:Key="ButtonStyleNoHighlighting" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Label Content="Initial Bet:" FontWeight="Bold"/>
+                    <TextBox Name="tbInitialBet" ToolTip="Initial Bet" Width="50" BorderBrush="Gray" Background="AliceBlue" Height="15" VerticalAlignment="Top" Margin="5" TextChanged="tbInitialBet_TextChanged"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Label Content="Initial Funds:" FontWeight="Bold"/>
+                    <TextBox Name="tbFunds" TextChanged="tbFunds_TextChanged" Width="50" BorderBrush="Gray" Background="AliceBlue" Height="15" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="5"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <Label Content="CurrentFunds:" FontWeight="Bold"/>
+                    <Label Name="lblCurrentFunds" FontWeight="Bold"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Orientation="Horizontal">
+                    <Label Content="Round:" FontWeight="Bold"/>
+                    <Label Name="lblRound" Content="0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="4" Orientation="Horizontal">
+                    <Label Content="Profit:" FontWeight="Bold"/>
+                    <Label Name="lblProfit" Content="0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="5" Orientation="Horizontal">
+                    <Label Content="Profit Per Hour:" FontWeight="Bold"/>
+                    <Label Name="lblProfitPerHour" Content="0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="6" Orientation="Horizontal">
+                    <Label Content="Current Win Streak:" FontWeight="Bold"/>
+                    <Label Name="lblCurrentWinStreak" Content="0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="7" Orientation="Horizontal">
+                    <Label Content="Longest Win Streak:" FontWeight="Bold"/>
+                    <Label Name="lblLongestWinStreak" Content="0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="8" Orientation="Horizontal">
+                    <Label Content="Current Lose Streak:" FontWeight="Bold"/>
+                    <Label Name="lblCurrentLoseStreak" Content="0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="9" Orientation="Horizontal">
+                    <Label Content="Longest Lose Streak:" FontWeight="Bold"/>
+                    <Label Name="lblLongestLoseStreak" Content="0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="10" Orientation="Horizontal">
+                    <Label Content="Play Time:" FontWeight="Bold"/>
+                    <Label Name="lblPlayTime" Content="0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="11" Orientation="Horizontal">
+                    <Label Content="Rolls Per Hour:" FontWeight="Bold"/>
+                    <Label Name="lblRollsPerHour" Content="0"/>
+                </StackPanel>
+
+                <Grid Grid.Row="12" VerticalAlignment="Bottom">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Name="btnStart" Grid.Row="0" Content="Start" HorizontalAlignment="Center" Margin="15" Width="50" Click="btnStart_Click"/>
+                    <Button Name="btnStop" Grid.Row="1" Content="Stop" HorizontalAlignment="Center" Margin="15" Width="50" Click="btnStop_Click"/>
+                    <Button Name="btnReset" Grid.Row="2" Content="Reset" HorizontalAlignment="Center" Margin="15" Width="50" Click="btnReset_Click"/>
+                </Grid>
+
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Name="lblColorToBet" Content="Color To Bet:" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30"/>
+                    <Button Name="btnColor" Grid.Row="1" Width="400" Height="150" Style="{StaticResource ButtonStyleNoHighlighting}"/>
+                </Grid>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Name="lblCurrentBetLabel" Content="Amount to bet: " FontSize="20" FontWeight="Bold"/>
+                    <Label Name="lblCurrentBet" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                </StackPanel>
+                <Grid Grid.Row="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Name="lblQueue" Grid.Row="0" HorizontalAlignment="Center" Content="Upcomming Bet Colors:" FontSize="20" FontWeight="Bold"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+                        <Button Name="btnUpcommingOne" Margin="15" Width="50" Height="25" Style="{StaticResource ButtonStyleNoHighlighting}"/>
+                        <Button Name="btnUpcommingTwo" Margin="15" Width="50" Height="25" Style="{StaticResource ButtonStyleNoHighlighting}"/>
+                        <Button Name="btnUpcommingThree" Margin="15" Width="50" Height="25" Style="{StaticResource ButtonStyleNoHighlighting}"/>
+                        <Button Name="btnUpcommingFour" Margin="15" Width="50" Height="25" Style="{StaticResource ButtonStyleNoHighlighting}"/>
+                        <Button Name="btnUpcommingFive" Margin="15" Width="50" Height="25" Style="{StaticResource ButtonStyleNoHighlighting}"/>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Name="btnWin" Content="Win" HorizontalAlignment="Center" Margin="15" Width="50" Click="btnWin_Click"/>
+                    <Button Name="btnLose" Content="Lose" HorizontalAlignment="Center" Margin="15" Width="50" Click="btnLose_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>
