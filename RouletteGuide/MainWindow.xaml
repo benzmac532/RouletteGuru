@@ -62,7 +62,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal">
-                    <Label Content="CurrentFunds:" FontWeight="Bold"/>
+                    <Label Content="Current Funds:" FontWeight="Bold"/>
                     <Label Name="lblCurrentFunds" FontWeight="Bold"/>
                 </StackPanel>
 
@@ -107,7 +107,7 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="11" Orientation="Horizontal">
-                    <Label Content="Rolls Per Hour:" FontWeight="Bold"/>
+                    <Label Content="Spins Per Hour:" FontWeight="Bold"/>
                     <Label Name="lblRollsPerHour" Content="0"/>
                 </StackPanel>
 
