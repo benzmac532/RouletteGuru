@@ -63,6 +63,7 @@ namespace RouletteGuide
             round++;
             IncrementBetColor();
             CalculateProfitPerHour();
+            CalculateRollsPerHour();
             SetItems();
         }
 
@@ -82,6 +83,7 @@ namespace RouletteGuide
             DoubleBet();
             IncrementBetColor();
             CalculateProfitPerHour();
+            CalculateRollsPerHour();
             SetItems();
         }
 
@@ -97,6 +99,7 @@ namespace RouletteGuide
             longestWinStreak = 0;
             loseStreak = 0;
             longestLoseStreak = 0;
+            rollsPerHour = 0;
             timer.Restart();
             SetItems();
         }
@@ -144,36 +147,44 @@ namespace RouletteGuide
         {
             TimeSpan ts = timer.Elapsed;
 
-            if(ts.Minutes == 0 && ts.Seconds != 0)
+            try
             {
-                profitPerHour = ( 60 / (60 / ts.Seconds)) * profit;
+                if (ts.Minutes == 0 && ts.Seconds != 0)
+                {
+                    profitPerHour = (60 / (60 / ts.Seconds)) * profit;
+                }
+                else if (ts.Hours == 0 && ts.Minutes != 0)
+                {
+                    profitPerHour = (60 / ts.Minutes) * profit;
+                }
+                else
+                {
+                    profitPerHour = profit / ts.Hours;
+                }
             }
-            else if(ts.Hours == 0 && ts.Minutes != 0)
-            {
-                profitPerHour = (60 / ts.Minutes) * profit;
-            }
-            else
-            {
-                profitPerHour = profit / ts.Hours;
-            }
+            catch { }
         }
 
         private void CalculateRollsPerHour()
         {
             TimeSpan ts = timer.Elapsed;
 
-            if (ts.Minutes == 0 && ts.Seconds != 0)
+            try
             {
-                rollsPerHour = (60 / (60 / ts.Seconds)) * round;
+                if (ts.Minutes == 0 && ts.Seconds != 0)
+                {
+                    rollsPerHour = (60 / (60 / ts.Seconds)) * round;
+                }
+                else if (ts.Hours == 0 && ts.Minutes != 0)
+                {
+                    rollsPerHour = (60 / ts.Minutes) * round;
+                }
+                else
+                {
+                    rollsPerHour = round / ts.Hours;
+                }
             }
-            else if (ts.Hours == 0 && ts.Minutes != 0)
-            {
-                rollsPerHour = (60 / ts.Minutes) * round;
-            }
-            else
-            {
-                rollsPerHour = round / ts.Hours;
-            }
+            catch { }
         }
 
         private void tbInitialBet_TextChanged(object sender, TextChangedEventArgs e)
