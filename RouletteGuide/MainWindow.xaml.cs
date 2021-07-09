@@ -38,6 +38,9 @@ namespace RouletteGuide
         int longestWinStreak = 0;
         int longestLoseStreak = 0;
         int rollsPerHour = 0;
+        double totalWin = 0;
+        double totalLoss = 0;
+        double winLossRatio = 0;
 
         public MainWindow()
         {
@@ -51,6 +54,7 @@ namespace RouletteGuide
         public void btnWin_Click(object sender, EventArgs e)
         {
             winStreak++;
+            totalWin++;
             loseStreak = 0;
             if(winStreak > longestWinStreak)
             {
@@ -64,13 +68,14 @@ namespace RouletteGuide
             IncrementBetColor();
             CalculateProfitPerHour();
             CalculateRollsPerHour();
+            CalculateWinLoss();
             SetItems();
         }
 
         public void btnLose_Click(object sender, EventArgs e)
         {
             loseStreak++;
-
+            totalLoss++;
             if(loseStreak > longestLoseStreak)
             {
                 longestLoseStreak = loseStreak;
@@ -84,6 +89,7 @@ namespace RouletteGuide
             IncrementBetColor();
             CalculateProfitPerHour();
             CalculateRollsPerHour();
+            CalculateWinLoss();
             SetItems();
         }
 
@@ -100,6 +106,9 @@ namespace RouletteGuide
             loseStreak = 0;
             longestLoseStreak = 0;
             rollsPerHour = 0;
+            totalWin = 0;
+            totalLoss = 0;
+            winLossRatio = 0;
             timer.Restart();
             SetItems();
         }
@@ -165,6 +174,11 @@ namespace RouletteGuide
             catch { }
         }
 
+        private void CalculateWinLoss()
+        {
+            winLossRatio = totalLoss != 0 ? totalWin / totalLoss : Convert.ToDouble(totalWin);
+        }
+
         private void CalculateRollsPerHour()
         {
             TimeSpan ts = timer.Elapsed;
@@ -215,6 +229,7 @@ namespace RouletteGuide
             lblCurrentLoseStreak.Content = loseStreak;
             lblLongestLoseStreak.Content = longestLoseStreak;
             lblRollsPerHour.Content = rollsPerHour.ToString();
+            lblWinLossRatio.Content = Math.Round(winLossRatio, 2).ToString();
 
             if (blackBet.Contains(currentBetColor))
             {

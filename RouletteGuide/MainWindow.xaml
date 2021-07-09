@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RouletteGuide"
         mc:Ignorable="d"
-        Title="Roulette Guru" Height="500" Width="950">
+        Title="Roulette Guru" Height="525" Width="950">
     <Window.Resources>
         <Style x:Key="ButtonStyleNoHighlighting" TargetType="Button">
             <Setter Property="Template">
@@ -35,6 +35,7 @@
         <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="2">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -110,7 +111,12 @@
                     <Label Name="lblRollsPerHour" Content="0"/>
                 </StackPanel>
 
-                <Grid Grid.Row="12" VerticalAlignment="Bottom">
+                <StackPanel Grid.Row="12" Orientation="Horizontal">
+                    <Label Content="Win/Loss Ratio:" FontWeight="Bold"/>
+                    <Label Name="lblWinLossRatio" Content="0"/>
+                </StackPanel>
+
+                <Grid Grid.Row="13" VerticalAlignment="Bottom">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
