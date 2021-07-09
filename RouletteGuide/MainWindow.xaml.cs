@@ -121,7 +121,7 @@ namespace RouletteGuide
             }
             else
             {
-                MessageBox.Show("Make sure that the \"Initial Bet\" & \"Initial Funds\" text boxes contain an integer value in them before starting.", "Validation Failure", MessageBoxButton.OK);
+                MessageBox.Show("Make sure that the \"Initial Bet\" & \"Initial Funds\" text boxes contain an integer value before starting.", "Validation Failure", MessageBoxButton.OK);
             }
         }
 
