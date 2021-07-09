@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RouletteGuide"
         mc:Ignorable="d"
-        Title="Roulette Guru" Height="525" Width="950">
+        Title="Roulette Guru" Height="525" Width="680">
     <Window.Resources>
         <Style x:Key="ButtonStyleNoHighlighting" TargetType="Button">
             <Setter Property="Template">
